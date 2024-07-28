@@ -1,0 +1,43 @@
+<div class="container">
+
+  <!-- # form per barra di ricerca # -->
+    <form #BarraRicerca="ngForm" (ngSubmit)="inviaTitoloDaCercare()">
+        <div class="input-group my-3 mx-auto p-2" style="width: 30vw;">
+          <input type="text" 
+          class="form-control" 
+          id="inputTitolo"
+          placeholder="title..." 
+          #inputTitolo="ngModel" 
+          [(ngModel)]="titoloDaCercare" 
+          name="inputTitolo" 
+          
+          required>
+          <button class="btn btn-primary" 
+          type="submit" [disabled]="BarraRicerca.invalid">
+          <i class="bi bi-search"></i>
+        </button>
+        </div>
+      </form>
+      <!--##-->
+
+    
+      <!-- # Se non e' stata inviata nessuna ricerca o non ha dato risultati # -->
+        <ng-container *ngIf="filmSerie.length == 0">
+            <div class="m-auto p-2 text-center" style="min-height:63vh;">
+                <h3 class="my-4">Benvenuti sulla pagina di ricerca dei titoli di Netflicsss</h3>
+                <p class="text-muted">Qui potete trovare piu' di 1000 tra i film e le serie Tv piu' seguite del momento!</p>
+                <h5 class="text-danger my-2">Scrivi un titolo sulla barra di ricerca</h5>
+            </div>
+        </ng-container>
+        <!--##-->
+
+        <!-- # Se la ricerca ha dato risultati # -->
+        <ng-container *ngIf="filmSerie.length > 0">
+          <div class="d-flex flex-wrap m-auto p-2">
+            <app-homepage-show-card *ngFor="let show of filmSerie" [schedaShow]="show"></app-homepage-show-card>
+          </div>
+        </ng-container>
+        <!--##-->
+
+
+</div>

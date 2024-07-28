@@ -1,0 +1,13 @@
+<div *ngIf="schedaShow">
+  <!--Se la serie non e' come status=In development allora posso mostrarla che ha le informazioni presenti-->
+        <div class="card mb-2 d-flex mx-1" *ngIf="schedaShow.show.status != 'In Development'" style="width: 20vw">
+            <img [src]="schedaShow.show.image.medium" class="card-img-top img-fluid" [alt]="schedaShow.show.name">
+            <div class="card-body">
+              <h4 class="card-title">{{schedaShow.show.name}}</h4>
+              <h6 *ngIf="schedaShow.show.genres.length > 0" >Generi: <span class="text-muted">{{schedaShow.show.genres.join(', ')}}</span></h6> <!--se array genres e' vuoto non compare-->
+              <h6 *ngIf="schedaShow.show.premiered">Data di uscita: <span class="text-muted">{{schedaShow.show.premiered | date: 'dd-MM-yyyy'}}</span></h6> <!--Se non e' scritto nulla nella voce premiered-->
+              <button href="#" class="btn btn-primary" (click)="vaiAllaScheda(schedaShow.show.id)">Dettaglio</button>
+            </div>
+      </div>
+</div>
+

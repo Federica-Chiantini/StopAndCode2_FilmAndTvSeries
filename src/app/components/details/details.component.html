@@ -1,0 +1,30 @@
+<!-- # Se ci sono problemi con la visualizzazione della card del film richiesto # -->
+<ng-container >
+    @if (!dettagliShow) {
+        <h4 class="text-danger text-center">
+            Abbiamo avuto un problema, ci scusiamo per il disagio
+        </h4>
+    }
+</ng-container>
+<!--##-->
+
+<!-- # La card viene visualizzata in modo corretto # -->
+<ng-container>
+    @if (dettagliShow) {
+<div style="width: 40vw;" class="mx-auto p-2 text-center border rounded bg-light">
+            <h3>{{dettagliShow.show.name}}</h3>
+            <img [src]="dettagliShow.show.image.original" [alt]="dettagliShow.show.name" class="img-fluid">
+            <h6 class="my-3 text-muted" *ngIf="dettagliShow.show.rating.average"><!--ngIf crea voce se rating se ha un valore superiore a 0 -->
+            <i
+    *ngFor="let stella of ratingStelle"
+    [ngClass]="{ 
+        'bi-star-fill': dettagliShow.show.rating.average >= stella, 'bi-star': dettagliShow.show.rating.average < stella 
+    }"></i> <!--ciclo che mostra una stellina colorata per ogni punto del rating-->
+    {{dettagliShow.show.rating.average}}
+            </h6>
+            <h4 [ngClass]="[ !dettagliShow.show.rating.average ? 'my-3' : '' ]">Sommario:</h4><!--ngIf che da margine se il rating.average e' maggiore di 0-->
+            <p [innerHTML]="dettagliShow.show.summary"></p>
+</div>
+    }
+</ng-container>
+<!--##-->
