@@ -13,10 +13,10 @@ export class HomepageComponent {
   titoloDaCercare : string = ""
   filmSerie : Serie[] = []
 
-  constructor(private servizioShow : FilmSerieService){}
+  constructor(private FsService : FilmSerieService){}
 
     inviaTitoloDaCercare(){
-      this.servizioShow.showsTrovati(this.titoloDaCercare).subscribe({
+      this.FsService.showsTrovati(this.titoloDaCercare).subscribe({
             next: (dati) => {
               dati.length != 0 ? this.filmSerie = dati : alert('Titolo errato, prova a digitare un titolo diverso')
             },
