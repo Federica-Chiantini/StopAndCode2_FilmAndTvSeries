@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { showCompleto } from '../../models/filmSerieInterfaccia';
+import { Serie } from '../../models/serie.Interfaccia';
 import { FilmSerieService } from '../../services/film-serie.service';
 
 
@@ -11,7 +11,7 @@ import { FilmSerieService } from '../../services/film-serie.service';
 export class HomepageComponent {
 
   titoloDaCercare : string = ""
-  filmSerie : showCompleto[] = []
+  filmSerie : Serie[] = []
 
   constructor(private servizioShow : FilmSerieService){}
 

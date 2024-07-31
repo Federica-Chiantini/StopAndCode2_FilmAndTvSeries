@@ -12,18 +12,18 @@
 <ng-container>
     @if (dettagliShow) {
 <div style="width: 40vw;" class="mx-auto p-2 text-center border rounded bg-light">
-            <h3>{{dettagliShow.show.name}}</h3>
-            <img [src]="dettagliShow.show.image.original" [alt]="dettagliShow.show.name" class="img-fluid">
-            <h6 class="my-3 text-muted" *ngIf="dettagliShow.show.rating.average"><!--ngIf crea voce se rating se ha un valore superiore a 0 -->
+            <h3>{{dettagliShow.name}}</h3>
+            <img [src]="dettagliShow.image.original" [alt]="dettagliShow.name" class="img-fluid">
+            <h6 class="my-3 text-muted" *ngIf="dettagliShow.rating.average"><!--ngIf crea voce se rating se ha un valore superiore a 0 -->
             <i
     *ngFor="let stella of ratingStelle"
     [ngClass]="{ 
-        'bi-star-fill': dettagliShow.show.rating.average >= stella, 'bi-star': dettagliShow.show.rating.average < stella 
+        'bi-star-fill': dettagliShow.rating.average >= stella, 'bi-star': dettagliShow.rating.average < stella 
     }"></i> <!--ciclo che mostra una stellina colorata per ogni punto del rating-->
-    {{dettagliShow.show.rating.average}}
             </h6>
-            <h4 [ngClass]="[ !dettagliShow.show.rating.average ? 'my-3' : '' ]">Sommario:</h4><!--ngIf che da margine se il rating.average e' maggiore di 0-->
-            <p [innerHTML]="dettagliShow.show.summary"></p>
+            <h6 *ngIf="dettagliShow.premiered">Data di uscita: <span class="text-muted">{{dettagliShow.premiered | date: 'dd/MMM/yyyy'}}</span></h6>
+            <h4 [ngClass]="[ !dettagliShow.rating.average ? 'my-3' : '' ]">Sommario:</h4><!--ngIf che da margine se il rating.average e' maggiore di 0-->
+            <p [innerHTML]="dettagliShow.summary"></p>
 </div>
     }
 </ng-container>

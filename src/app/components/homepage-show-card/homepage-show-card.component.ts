@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { showCompleto } from '../../models/filmSerieInterfaccia';
+import { Serie } from '../../models/serie.Interfaccia';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 })
 export class HomepageShowCardComponent {
   @Input()
-  schedaShow !: showCompleto 
+  schedaShow ?: Serie 
 
   constructor(private router : Router){}
 
   vaiAllaScheda(id : number){ 
-    this.router.navigate(['details/', id], {state: this.schedaShow})
+    this.router.navigate(['details/', id])
   }
 }

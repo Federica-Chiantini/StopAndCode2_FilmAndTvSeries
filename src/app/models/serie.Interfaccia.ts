@@ -1,9 +1,9 @@
-export interface showCompleto { //interfaccia principale oggetto
+export interface Serie { //interfaccia principale oggetto
     score : number 
-    show : show
+    show : SerieShow
   }
 
-  export interface show {
+  export interface SerieShow {
     id: number
     url: string
     name: string
@@ -16,29 +16,27 @@ export interface showCompleto { //interfaccia principale oggetto
     premiered: string
     ended: any
     officialSite: string
-    schedule: Schedule
-    rating: Rating
+    schedule: SerieSchedule
+    rating: {
+      average: number
+    }
     weight: number
-    network: Network
+    network: SerieNetwork
     webChannel: any
     dvdCountry: any
-    externals: Externals
-    image: Image
+    externals: SerieExternals
+    image: SerieImage
     summary: string
     updated: number
-    _links: Links
+    _links: SerieLinks
   }
   
-  export interface Schedule {
+  export interface SerieSchedule {
     time: string
     days: string[]
   }
   
-  export interface Rating {
-    average: number
-  }
-  
-  export interface Network {
+  export interface SerieNetwork {
     id: number
     name: string
     country: Country
@@ -51,27 +49,23 @@ export interface showCompleto { //interfaccia principale oggetto
     timezone: string
   }
   
-  export interface Externals {
+  export interface SerieExternals {
     tvrage: number
     thetvdb: number
     imdb: string
   }
   
-  export interface Image {
+  export interface SerieImage {
     medium: string
     original: string
   }
   
-  export interface Links {
-    self: Self
-    previousepisode: Previousepisode
-  }
-  
-  export interface Self {
-    href: string
-  }
-  
-  export interface Previousepisode {
-    href: string
-    name: string
+  export interface SerieLinks {
+    self: {
+      href: string
+    }
+    previousepisode: {
+      href: string
+      name: string
+    }
   }

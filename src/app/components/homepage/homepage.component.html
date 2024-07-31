@@ -33,11 +33,11 @@
 
         <!-- # Se la ricerca ha dato risultati # -->
         <ng-container *ngIf="filmSerie.length > 0">
-          <div class="d-flex flex-wrap m-auto p-2">
-            <app-homepage-show-card *ngFor="let show of filmSerie" [schedaShow]="show"></app-homepage-show-card>
-          </div>
+<div class="row">
+            <div  *ngFor="let show of filmSerie" class="col-12 col-sm-4 col-md-3">
+              <app-homepage-show-card [schedaShow]="show"></app-homepage-show-card>
+            </div>
+</div>
         </ng-container>
         <!--##-->
-
-
 </div>

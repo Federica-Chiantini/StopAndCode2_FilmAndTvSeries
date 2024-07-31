@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { showCompleto } from '../../models/filmSerieInterfaccia';
-import { Router } from '@angular/router';
+import { SerieShow } from '../../models/serie.Interfaccia';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { FilmSerieService } from '../../services/film-serie.service';
 
 @Component({
   selector: 'app-details',
@@ -9,15 +11,21 @@ import { Router } from '@angular/router';
 })
 export class DetailsComponent {
 
-  dettagliShow ?: showCompleto
+  dettagliShow ?: SerieShow
   ratingStelle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //conto delle stelle nel rating
 
-  constructor(private router : Router){
-    this.dettagliShow = this.router.getCurrentNavigation()?.extras.state as showCompleto
-  }
+  constructor(private ar : ActivatedRoute, private FSservice : FilmSerieService){}
 
   ngOnInit(){
-    console.log(this.dettagliShow)
+    this.ar.params.subscribe(p =>{ 
+      const serieId = p['id']
+      console.log(serieId)
+      this.FSservice.showstramiteId(serieId).subscribe({
+        next : (d) => this.dettagliShow = d,
+        error : (e) => console.log(e)
+      }
+      )
+    })
   }
 
   
